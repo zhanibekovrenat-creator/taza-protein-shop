@@ -1,106 +1,168 @@
-document.addEventListener('DOMContentLoaded', () => {
+:root{
+  --accent:#2c7be5;
+  --bg:#f5f7fa;
+}
 
-  const productsData = [
-    {name:"Whey Protein 1kg",category:"protein",price:4500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdwuyRW7e0qHzdIwu_PZZhej1ZIqZyWyX1EQ&s"},
-    {name:"Casein Protein 900g",category:"protein",price:4800,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk-pIyUaFRz9orA5EvHCO3TbNH9ROo8lSZ6g&s"},
-    {name:"BCAA 500g",category:"amino",price:3200,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQuKiiiCVafbddW-ef2MzjE8IcwSWSHnTkHA&s"},
-    {name:"Creatine 300g",category:"amino",price:2500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvkdgQV7zHGvtzMFD1PNlm_SYjMsTAmHtXyg&s"},
-    {name:"Gainer 2kg",category:"gainer",price:5400,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9GtFl9THgCkZJaxKEAOItPj8WFcJFZ57Flg&s"},
-    {name:"Vitamin Complex",category:"vitamins",price:1500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVxPEVfmdWCBtqBpfXgAGL1WkISAwKXM9Sug&s"}
-  ];
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:Arial;
+}
 
-  let currentFilter = "all";
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+/* MOBILE HEADER */
+header{
+  background:white;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
 
-  const productsEl = document.getElementById("products");
-  const searchEl = document.getElementById("q");
-  const sortEl = document.getElementById("sort");
+.logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:22px;
+}
 
-  function renderProducts(){
-    let list = [...productsData];
-    if(currentFilter!=="all") list=list.filter(p=>p.category===currentFilter);
-    const q = searchEl.value.toLowerCase();
-    if(q.trim()!=="") list=list.filter(p=>p.name.toLowerCase().includes(q));
-    if(sortEl.value==="price-asc") list.sort((a,b)=>a.price-b.price);
-    if(sortEl.value==="price-desc") list.sort((a,b)=>b.price-a.price);
-    productsEl.innerHTML = list.map((p,i)=>`
-      <div class="card">
-        <img src="${p.img}" alt="${p.name}">
-        <h4>${p.name}</h4>
-        <div class="meta">Категория: ${p.category}</div>
-        <div class="price">${p.price} сом</div>
-        <button class="btn" onclick="addToCart(${i})">Добавить в корзину</button>
-      </div>
-    `).join("") || `<div style="grid-column:1/-1;text-align:center;color:#888">Товары не найдены</div>`;
-  }
+.logo-icon{
+  width:40px;
+  height:40px;
+}
 
-  window.addToCart = function(i){
-    const p = productsData[i];
-    const item = cart.find(x=>x.name===p.name);
-    if(item) item.qty++;
-    else cart.push({name:p.name,price:p.price,qty:1,img:p.img});
-    saveCart();
-  }
+/* Search */
+.search input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  font-size:16px;
+}
 
-  function saveCart(){
-    localStorage.setItem("cart",JSON.stringify(cart));
-    renderCart();
-  }
+/* Buttons */
+.btn{
+  background:var(--accent);
+  color:white;
+  padding:14px 18px;
+  border-radius:12px;
+  border:none;
+  font-size:16px;
+}
+.btn.ghost{
+  background:white;
+  color:var(--accent);
+  border:1px solid var(--accent);
+}
 
-  function renderCart(){
-    const box=document.getElementById("cartItems");
-    const totalEl=document.getElementById("cartTotal");
-    const countEl=document.getElementById("cartCount");
-    if(cart.length===0){
-      box.innerHTML=`<div style="padding:12px;color:#888">Корзина пуста</div>`;
-      totalEl.textContent="0";
-      countEl.textContent="0";
-      return;
-    }
-    let sum=0;
-    box.innerHTML=cart.map((c,i)=>{
-      sum+=c.price*c.qty;
-      return `
-        <div class="cart-item">
-          <img src="${c.img}" alt="${c.name}">
-          <div style="flex:1">
-            <div>${c.name}</div>
-            <div class="qty">
-              <button onclick="decQty(${i})">-</button>
-              <span>${c.qty}</span>
-              <button onclick="incQty(${i})">+</button>
-              <button onclick="removeItem(${i})" style="margin-left:5px;">Удалить</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join("");
-    totalEl.textContent=sum+"сом";
-    countEl.textContent=cart.reduce((a,b)=>a+b.qty,0);
-  }
+.cart-btn{
+  width:100%;
+  margin-top:5px;
+  text-align:center;
+}
 
-  window.incQty=function(i){cart[i].qty++;saveCart();}
-  window.decQty=function(i){cart[i].qty--; if(cart[i].qty<=0) cart.splice(i,1); saveCart();}
-  window.removeItem=function(i){cart.splice(i,1); saveCart();}
+.badge{
+  background:red;
+  padding:3px 8px;
+  border-radius:50%;
+  color:white;
+  font-size:13px;
+}
 
-  document.querySelectorAll(".filter").forEach(btn=>btn.onclick=()=>{
-    currentFilter=btn.dataset.filter;
-    renderProducts();
-  });
+/*** Filters ***/
+.filters{
+  display:flex;
+  overflow-x:auto;
+  gap:8px;
+  padding:10px 0;
+}
+.filter{
+  background:white;
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
 
-  searchEl.oninput=renderProducts;
-  sortEl.onchange=renderProducts;
-  document.getElementById("clearStorage").onclick=()=>{
-    searchEl.value="";
-    sortEl.value="default";
-    currentFilter="all";
-    renderProducts();
-  }
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;
+  padding:10px;
+}
 
-  document.getElementById("openCart").onclick=()=>document.getElementById("cartPanel").classList.add("open");
-  document.getElementById("closeCart").onclick=()=>document.getElementById("cartPanel").classList.remove("open");
-  document.getElementById("clearCart").onclick=()=>{cart=[];saveCart();}
+/* Product Cards */
+.card{
+  background:white;
+  padding:10px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
+}
 
-  renderProducts();
-  renderCart();
-});
+/* Cart Panel */
+.cart-panel{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:80%;
+  background:white;
+  border-radius:20px 20px 0 0;
+  transform:translateY(110%);
+  transition:.3s;
+  padding:15px;
+}
+.cart-panel.open{
+  transform:translateY(0);
+}
+
+.cart-items{
+  height:55%;
+  overflow:auto;
+  margin:10px 0;
+}
+
+.cart-item{
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+}
+.cart-item img{
+  width:65px;
+  height:65px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+.qty button{
+  padding:3px 8px;
+}
+
+/* WhatsApp */
+.phone-order{
+  margin:20px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+.call-btn{
+  padding:14px 20px;
+  background:#25D366;
+  border:none;
+  border-radius:12px;
+  color:white;
+  font-size:18px;
+}
