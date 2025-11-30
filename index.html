@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2964/2964514.png">
-
-<title>Taza Protein — Магазин спорт питания</title>
+<title>Taza Protein RENAT — Магазин спорт питания</title>
 
 <link rel="stylesheet" href="sport.css">
 <script src="sport.js" defer></script>
@@ -14,69 +13,84 @@
 <body>
 
 <header>
-<div class="logo">
-<img src="https://cdn-icons-png.flaticon.com/512/2964/2964514.png" class="logo-icon">
-<div class="text">Taza Protein RENAT</div>
-</div>
+  <div class="logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/2964/2964514.png" class="logo-icon">
+    <div class="text">Taza Protein RENAT</div>
+  </div>
 
-<div class="search">
-<input id="q" placeholder="Поиск...">
-</div>
+  <div class="search">
+    <input id="q" placeholder="Поиск...">
+  </div>
 
-<button class="btn cart-btn" id="openCart">
-Корзина <span class="badge" id="cartCount">0</span>
-</button>
+  <button class="btn cart-btn" id="openCart">
+    Корзина <span class="badge" id="cartCount">0</span>
+  </button>
 </header>
 
 <main>
-<div class="controls">
-<select id="sort" class="pill">
-<option value="default">Сортировка</option>
-<option value="price-asc">Цена ↑</option>
-<option value="price-desc">Цена ↓</option>
-</select>
-</div>
+  <div class="controls">
+    <select id="sort" class="pill">
+      <option value="default">Сортировка</option>
+      <option value="price-asc">Цена ↑</option>
+      <option value="price-desc">Цена ↓</option>
+    </select>
+  </div>
 
-<div class="filters">
-<button class="filter" data-filter="all">Все</button>
-<button class="filter" data-filter="protein">Протеин</button>
-<button class="filter" data-filter="amino">Аминокислоты</button>
-<button class="filter" data-filter="gainer">Гейнеры</button>
-<button class="filter" data-filter="vitamins">Витамины</button>
-</div>
+  <div class="filters">
+    <button class="filter" data-filter="all">Все</button>
+    <button class="filter" data-filter="protein">Протеин</button>
+    <button class="filter" data-filter="amino">Аминокислоты</button>
+    <button class="filter" data-filter="gainer">Гейнеры</button>
+    <button class="filter" data-filter="vitamins">Витамины</button>
+  </div>
 
-<section class="grid" id="products"></section>
+  <section class="grid" id="products"></section>
 </main>
 
+
 <div class="cart-panel" id="cartPanel">
-<div class="cart-header">
-<strong>Корзина</strong>
-<button class="btn ghost" id="closeCart">✕</button>
+  <div class="cart-header">
+    <button class="btn ghost" id="backCart">← Назад</button>
+    <strong>Корзина</strong>
+    <button class="btn ghost" id="closeCart">✕</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-bottom">
+    <div class="muted">Итого: <strong id="cartTotal">0</strong></div>
+    <div class="cart-actions">
+      <button class="btn" id="checkoutBtn">Оформить</button>
+      <button class="btn ghost" id="clearCart">Очистить</button>
+      <button class="btn ghost" id="homeCart">На главную</button>
+    </div>
+  </div>
 </div>
 
-<div class="cart-items" id="cartItems"></div>
 
-<div class="cart-bottom">
-<div class="muted">Итого: <strong id="cartTotal">0</strong></div>
-<div class="cart-actions">
-<button class="btn" id="checkoutBtn">Оформить</button>
-<button class="btn ghost" id="clearCart">Очистить</button>
-</div>
-</div>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="modalClose">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+  </div>
 </div>
 
 <footer>
-© <span id="year"></span> Taza Protein
+  <div class="owner-info">
+    <h2>ZHANIBEKOV   RENAT   ZHANIBEKOVICH</h2>
+   <p><h1> TAZA PROTEIN </h1>  Качественный продук по доступным ценам</p>
+   <p> Онлайн заказ и быстрая доставка по всему Кыргызстану</p>
+    <p>Instagram: <a href="https://www.instagram.com/r1nat.11?igsh=dnJ2MmhyeTQ0Nmwx&utm_source=qr" target="_blank">@r1nat.11</a></p>
+    <p>WhatsApp: <a href="https://wa.me/996550904390" target="_blank">+996 550 904 390</a></p>
+    <p></p>
+      © <span id="year"></span> 2025 Taza Protein RENAT
+  </div>
 </footer>
 
-<div class="phone-order">
-<h2>Хотите заказать через WhatsApp?</h2>
-<button class="call-btn" onclick="window.open('https://wa.me/996550904390', '_blank')">
-💬 Написать RENAT
-</button>
-</div>
+
+<div id="toast" class="toast">Товар добавлен в корзину!</div>
 
 </body>
 </html>
-
 
