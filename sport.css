@@ -190,3 +190,10 @@ footer{
   transition:.2s;
 }
 .phone-order .call-btn:hover{transform:scale(1.05);}
+
+.logo-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  object-fit: cover;
+}
