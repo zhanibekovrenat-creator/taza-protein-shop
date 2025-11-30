@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taza Protein — Магазин спорт питания</title>
+  <link rel="stylesheet" href="sport.css">
+  <script src="sport.js" defer></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="mark">T</div>
+    <div class="text">Taza Protein</div>
+  </div>
+  <div class="search">
+    <input id="q" placeholder="Поиск по товарам...">
+  </div>
+  <div class="actions">
+    <div class="filters">
+      <button class="filter" data-filter="all">Все</button>
+      <button class="filter" data-filter="protein">Протеин</button>
+      <button class="filter" data-filter="amino">Аминокислоты</button>
+      <button class="filter" data-filter="gainer">Гейнеры</button>
+      <button class="filter" data-filter="vitamins">Витамины</button>
+    </div>
+    <button class="btn ghost" id="clearStorage">Сброс</button>
+    <button class="btn cart-btn" id="openCart">
+      Корзина <span class="badge" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="controls">
+    <div class="muted">Показ товаров</div>
+    <div style="flex:1"></div>
+    <select id="sort" class="pill">
+      <option value="default">По умолчанию</option>
+      <option value="price-asc">Цена ↑</option>
+      <option value="price-desc">Цена ↓</option>
+    </select>
+  </div>
+
+  <section class="grid" id="products"></section>
+</main>
+
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <strong>Корзина</strong>
+    <button class="btn ghost" id="closeCart">Закрыть</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="muted">Итого: <strong id="cartTotal">0</strong></div>
+  <div class="cart-actions">
+    <button class="btn" id="checkoutBtn">Оформить</button>
+    <button class="btn ghost" id="clearCart">Очистить</button>
+  </div>
+</div>
+
+<footer>
+  © <span id="year"></span> Taza Protein
+</footer>
+
+<div class="phone-order">
+  <h2>Хотите заказать через WhatsApp?</h2>
+  <p>RENAT поможет подобрать спортивное питание!</p>
+  <button class="call-btn" onclick="window.open('https://wa.me/996550904390', '_blank')">
+    💬 Написать в WhatsApp
+  </button>
+</div>
+
+</body>
+</html>
