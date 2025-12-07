@@ -4,7 +4,7 @@ const productsData = [
   {name:"Whey Protein",category:"protein",price:7500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdwuyRW7e0qHzdIwu_PZZhej1ZIqZyWyX1EQ&s", description:"Высококачественный сывороточный протеин для набора массы."},
   {name:"Casein Protein",category:"protein",price:4800,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk-pIyUaFRz9orA5EvHCO3TbNH9ROo8lSZ6g&s", description:"Медленно усваиваемый казеин для ночного восстановления."},
   {name:"BCAA",category:"amino",price:3200,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQuKiiiCVafbddW-ef2MzjE8IcwSWSHnTkHA&s", description:"Аминокислоты BCAA для восстановления мышц."},
-  {name:"Creatine",category:"amino",price:2500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvkdgQV7zHGvtzMFD1PNlm_SYjMsTAmHtXyg&s", description:"Креатин для увеличения силы и выносливости."},
+  {name:"Creatine GOLD",category:"amino",price:2500,img:"https://gorillagym.kg/img/photos/src/9tgfXixPqwILcy0JOKsKr9ePwRTQBtBGQxlUStul.png", description:"Креатин для увеличения силы и выносливости."},
   {name:"Gainer",category:"gainer",price:5400,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9GtFl9THgCkZJaxKEAOItPj8WFcJFZ57Flg&s", description:"Гейнер для быстрого набора массы."},
   {name:"Vitamin Complex",category:"vitamins",price:1500,img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVxPEVfmdWCBtqBpfXgAGL1WkISAwKXM9Sug&s", description:"Комплекс витаминов для поддержания здоровья."}
 ];
